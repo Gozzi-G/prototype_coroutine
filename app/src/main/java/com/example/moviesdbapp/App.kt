@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.multidex.MultiDex
 import com.example.moviesdbapp.di.appModule
 import com.example.moviesdbapp.di.repositoriesModule
+import com.example.moviesdbapp.di.viewModelsModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
@@ -15,12 +16,12 @@ class App : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@App)
-            module {
-                appModule
-                repositoriesModule
-            }
+            modules(
+                appModule,
+                repositoriesModule,
+                viewModelsModule
+            )
         }
-
     }
 
     override fun attachBaseContext(base: Context?) {
