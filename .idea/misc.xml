@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Education/movies_db_app/app/src/main/res/layout/activity_main.xml" value="0.26197916666666665" />
+        <entry key="..\:/Education/movies_db_app/app/src/main/res/layout/fragment_movie_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/Education/movies_db_app/app/src/main/res/layout/fragment_profile_layout.xml" value="0.36666666666666664" />
+        <entry key="..\:/Education/movies_db_app/app/src/main/res/layout/fragment_search_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/Work/Android Projects/kotlin/MoviesDBApp/app/src/main/res/layout/activity_main.xml" value="0.3359375" />
       </map>
     </option>

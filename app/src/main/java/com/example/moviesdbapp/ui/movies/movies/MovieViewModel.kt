@@ -1,4 +1,4 @@
-package com.example.moviesdbapp.ui.movies
+package com.example.moviesdbapp.ui.movies.movies
 
 import android.util.Log
 import androidx.lifecycle.viewModelScope

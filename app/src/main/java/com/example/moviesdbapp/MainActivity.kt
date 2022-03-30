@@ -1,9 +1,9 @@
 package com.example.moviesdbapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.moviesdbapp.databinding.ActivityMainBinding
-import com.example.moviesdbapp.ui.movies.MovieViewModel
+import com.example.moviesdbapp.ui.movies.movies.MovieViewModel
 import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +21,5 @@ class MainActivity : AppCompatActivity() {
         viewModel.onViewCreated()
 
     }
-
 
 }
