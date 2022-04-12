@@ -2,6 +2,7 @@ package com.example.moviesdbapp.data.network
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.example.moviesdbapp.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -12,7 +13,7 @@ abstract class RetrofitHolder(
 ) {
 
     companion object {
-        private const val BASE_URL = "https://api.themoviedb.org/3/"
+        private const val BASE_URL = BuildConfig.BASE_URL
     }
 
     private var retrofit: Retrofit
@@ -20,17 +21,19 @@ abstract class RetrofitHolder(
     init {
         val okHttpClient = OkHttpClient.Builder()
 
-        val loginInterceptor = HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BODY
+        if (BuildConfig.IS_LOGS_ENABLED) {
+            val loginInterceptor = HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            }
+
+            okHttpClient.addInterceptor(loginInterceptor)
+
+            val chuckerInterceptor = ChuckerInterceptor
+                .Builder(appContext)
+                .build()
+
+            okHttpClient.addInterceptor(chuckerInterceptor)
         }
-
-        okHttpClient.addInterceptor(loginInterceptor)
-
-        val chuckerInterceptor = ChuckerInterceptor
-            .Builder(appContext)
-            .build()
-
-        okHttpClient.addInterceptor(chuckerInterceptor)
 
         retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
