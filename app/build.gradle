@@ -6,12 +6,20 @@ apply plugin: 'kotlin-parcelize'
 android {
     compileSdk 31
 
+    def TRUE = "true"
+    def FALSE = "false"
+    def IS_LOGS_ENABLED = "IS_LOGS_ENABLED"
+    def CAN_USE_MOCK = "CAN_USE_MOCK"
+    def APP_NAME = "app_name"
+
     defaultConfig {
         applicationId "com.example.moviesdbapp"
         minSdk 23
         targetSdk 31
         versionCode 1
         versionName "1.0"
+
+        buildConfigField "String", 'CLEAN_VERSION_NAME', '"' + versionName + '"'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -20,6 +28,14 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "boolean", CAN_USE_MOCK, FALSE
+            buildConfigField "boolean", IS_LOGS_ENABLED, FALSE
+        }
+
+        debug {
+            minifyEnabled false
+            buildConfigField "boolean", CAN_USE_MOCK, TRUE
+            buildConfigField "boolean", IS_LOGS_ENABLED, TRUE
         }
     }
     compileOptions {
@@ -32,6 +48,27 @@ android {
 
     viewBinding {
         enabled = true
+    }
+
+    def BASE_URL = "BASE_URL"
+    def BASE_URL_DEV = "\"https://api.themoviedb.org/3/\""
+    def BASE_URL_PROD = "\"https://api.themoviedb.org/3/\""
+
+    flavorDimensions "my_movie_db"
+
+    productFlavors {
+        dbDev {
+            dimension "my_movie_db"
+            resValue "string", APP_NAME, "MmDB"
+            applicationId "com.example.moviesdbapp.dev"
+            buildConfigField "String", BASE_URL, BASE_URL_DEV
+        }
+        dbProd {
+            dimension "my_movie_db"
+            resValue "string", APP_NAME, "MmDB"
+            applicationId "com.example.moviesdbapp"
+            buildConfigField "String", BASE_URL, BASE_URL_PROD
+        }
     }
 
 }
