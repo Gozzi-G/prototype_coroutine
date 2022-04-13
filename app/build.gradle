@@ -13,7 +13,7 @@ android {
     def APP_NAME = "app_name"
 
     defaultConfig {
-        applicationId "com.example.moviesdbapp"
+        applicationId "com.example.fakeapp"
         minSdk 23
         targetSdk 31
         versionCode 1
@@ -51,22 +51,22 @@ android {
     }
 
     def BASE_URL = "BASE_URL"
-    def BASE_URL_DEV = "\"https://api.themoviedb.org/3/\""
-    def BASE_URL_PROD = "\"https://api.themoviedb.org/3/\""
+    def BASE_URL_DEV = "\"https://fakerapi.it/api/v1/\""
+    def BASE_URL_PROD = "\"https://fakerapi.it/api/v1/\""
 
-    flavorDimensions "my_movie_db"
+    flavorDimensions "fake_app"
 
     productFlavors {
         dbDev {
-            dimension "my_movie_db"
-            resValue "string", APP_NAME, "MmDB"
-            applicationId "com.example.moviesdbapp.dev"
+            dimension "fake_app"
+            resValue "string", APP_NAME, "FakeApp"
+            applicationId "com.example.fakeapp.dev"
             buildConfigField "String", BASE_URL, BASE_URL_DEV
         }
         dbProd {
-            dimension "my_movie_db"
-            resValue "string", APP_NAME, "MmDB"
-            applicationId "com.example.moviesdbapp"
+            dimension "fake_app"
+            resValue "string", APP_NAME, "FakeApp"
+            applicationId "com.example.fakeapp"
             buildConfigField "String", BASE_URL, BASE_URL_PROD
         }
     }
